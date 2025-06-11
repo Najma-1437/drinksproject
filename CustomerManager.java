@@ -14,5 +14,11 @@ public class CustomerManager {
     public static Customer getCustomerByID(String customerId){
         return customers.get(customerId);
     }
-
+    public static void linkOrderToCustomer(String customerId, String orderId) {
+        Customer customer = customers.get(customerId);
+        if (customer != null) {
+            customer.addOrderId(orderId);
+        }
+    }
 }
+

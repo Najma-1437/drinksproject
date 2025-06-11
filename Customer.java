@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
     private final String customerId;
     private final String name;
     private String contact;  // Not final because it can be updated
     private final String email;
     private final String preferredBranch;
+    private List<String>orderId = new ArrayList<>();
 
     public Customer(String customerId, String name, String contact, String email, String preferredBranch) {
         this.customerId = customerId;
@@ -11,6 +15,11 @@ public class Customer {
         this.contact = contact;
         this.email = email;
         this.preferredBranch = preferredBranch;
+    }
+    public void addOrderId(String orderId) {
+        if (orderId != null) {
+            this.orderId.add(orderId);
+        }
     }
 
     public String getCustomerId() {
