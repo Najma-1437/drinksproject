@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class OrderService {
     private List<Order> orders;
     private CustomerService customerService;
+    private List<String> drinkType;
 
     public OrderService(CustomerService customerService) {
         this.orders = new ArrayList<>();
@@ -31,9 +32,9 @@ public class OrderService {
             Order order = new Order(orderId,customerId, drinkType, quantity, branchName, unitPrice);
             orders.add(order);
             System.out.println("Order placed: " + order.getOrderSummary());
-//            if(order != null){
-//                CustomerManager.linkOrderToCustomer(customerId, orderId);
-//            }
+            if(order != null){
+                CustomerManager.linkOrderToCustomer(customerId, orderId);
+            }
             return order;
         } catch (IllegalArgumentException e) {
             System.err.println("Error placing order: " + e.getMessage());
@@ -55,6 +56,11 @@ public class OrderService {
 
     public List<Order> getAllOrders() {
         return new ArrayList<>(orders);
+    }
+    public List<Order> getOrdersByDrinkType(){
+        return orders.stream()
+                .filter(order -> getOrdersByDrinkType().equals(drinkType))
+                .collect(Collectors.toList());
     }
 
     public List<Order> getOrdersByBranch(String branchName) {

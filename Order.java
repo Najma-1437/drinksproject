@@ -39,4 +39,7 @@ public class Order {
     public Object getOrderId() {
         return orderId;
     }
+    public  String getDrinkType(){
+        return drinkType;
+    }
 }
